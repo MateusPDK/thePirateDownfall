@@ -1,0 +1,11 @@
+Model Information:
+* title:	Swiss Saber
+* source:	https://sketchfab.com/3d-models/swiss-saber-7e5a6d4ae4534d71babf3163ffe5c271
+* author:	Yudha Mfr (https://sketchfab.com/yudhamfr)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Swiss Saber" (https://sketchfab.com/3d-models/swiss-saber-7e5a6d4ae4534d71babf3163ffe5c271) by Yudha Mfr (https://sketchfab.com/yudhamfr) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

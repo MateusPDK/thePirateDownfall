@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://cee1rl5ocxctp"]
+
+[ext_resource type="Script" path="res://character.gd" id="1_i6p0h"]
+[ext_resource type="PackedScene" uid="uid://dy6u5two2gyr" path="res://models/saber/scene.gltf" id="2_nm33h"]
+[ext_resource type="Script" path="res://saber_controller.gd" id="2_q6imq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iewjx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_e2iqu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pupd"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ofnt7"]
+material = SubResource("StandardMaterial3D_5pupd")
+size = Vector3(0.05, 2, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_odaep"]
+size = Vector3(30, 12.828, 200)
+
+[node name="character" type="CharacterBody3D"]
+script = ExtResource("1_i6p0h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_iewjx")
+metadata/_edit_lock_ = true
+
+[node name="character_hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="character_hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_e2iqu")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="saber_controller" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+tracker = &"right_hand"
+pose = &"grip"
+script = ExtResource("2_q6imq")
+
+[node name="saber_placeholder" type="MeshInstance3D" parent="XROrigin3D/saber_controller"]
+visible = false
+mesh = SubResource("BoxMesh_ofnt7")
+
+[node name="saber" parent="XROrigin3D/saber_controller" instance=ExtResource("2_nm33h")]
+transform = Transform3D(-4.37114e-10, -0.01, -8.74228e-10, 4.37114e-10, -8.74228e-10, 0.01, -0.01, 4.37114e-10, 4.37114e-10, 0, 0, 0)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/saber_controller"]
+transform = Transform3D(-4.37114e-10, -0.01, -8.74228e-10, 4.37114e-10, -8.74228e-10, 0.01, -0.01, 4.37114e-10, 4.37114e-10, -0.1, 0, 0)
+shape = SubResource("BoxShape3D_odaep")
+metadata/_edit_lock_ = true
