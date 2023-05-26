@@ -8,22 +8,22 @@ var hitRotationAngle = 15
 func _ready():
 	pass # Replace with function body.
 
-func _input(event):
-	if Input.is_action_just_pressed("atack"):
-		start_hit_animation()
+# func _input(event):
+# 	if Input.is_action_just_pressed("atack"):
+# 		start_hit_animation()
 
-func start_hit_animation():
-	var originalRotation = rotation
-	var targetRotation = originalRotation.rotated(Vector3(0, 1, 0), deg_to_rad(hitRotationAngle))
+# func start_hit_animation():
+	# var originalRotation = rotation
+	# var targetRotation = originalRotation.rotated(Vector3(0, 1, 0), deg_to_rad(hitRotationAngle))
 
 	# Use a Tween node or a Timer to animate the rotation over time
-	var tween = Tween.new()
-	add_child(tween)
+	# var tween = Tween.new()
+	# add_child(tween)
 
-	tween.interpolate_property(self, "rotation", originalRotation, targetRotation, hitAnimationDuration,
-		Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween.start()
-	tween.connect("tween_completed", self, "_on_tween_completed")
+	# tween.interpolate_property(self, "rotation", originalRotation, targetRotation, hitAnimationDuration,
+	# 	Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	# tween.start()
+	# tween.connect("tween_completed", self, "_on_tween_completed")
 
 func _on_tween_completed(object: Object, key: NodePath, value: Variant):
 	reset_sword_rotation()

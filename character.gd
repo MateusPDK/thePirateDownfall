@@ -7,6 +7,7 @@ var rotate_speed=0.005
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -35,8 +36,8 @@ func _unhandled_input(event):
 			$XROrigin3D/XRCamera3D.rotate($XROrigin3D/XRCamera3D.transform.basis * Vector3.RIGHT, -event.relative.y * rotate_speed)
 			#rotate(Vector3.DOWN, event.relative.x * rotate_speed)
 			#rotate(transform.basis * Vector3.RIGHT, -event.relative.y * rotate_speed)
-			$XROrigin3D/XRController3D.position=	$XROrigin3D/XRCamera3D.transform.basis * Vector3(0.5,-0.3,-1) 
-			$XROrigin3D/XRController3D.rotation= $XROrigin3D/XRCamera3D.rotation
+			$XROrigin3D/saber_controller.position= $XROrigin3D/XRCamera3D.transform.basis * Vector3(0.5,-0.3,-1) 
+			$XROrigin3D/saber_controller.rotation= $XROrigin3D/XRCamera3D.rotation
 
 func _on_hitbox_body_entered(body):
 	if (body.is_in_group("canonball")):
