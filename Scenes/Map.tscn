@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0bdnnjosrlkn"]
+
+[ext_resource type="PackedScene" uid="uid://dord4nvjdsktk" path="res://Scenes/Waterplane.tscn" id="1_2cxjj"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m4asp"]
+
+[node name="Map" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.1, 0)
+mesh = SubResource("CylinderMesh_m4asp")
+
+[node name="Waterplane" parent="." instance=ExtResource("1_2cxjj")]
