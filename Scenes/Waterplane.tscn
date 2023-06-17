@@ -9,6 +9,7 @@ subdivide_depth = 200
 orientation = 1
 
 [node name="Waterplane" type="MeshInstance3D"]
+transparency = 0.35
 cast_shadow = 0
 mesh = SubResource("QuadMesh_g7yvh")
 surface_material_override/0 = ExtResource("1_eylo1")
