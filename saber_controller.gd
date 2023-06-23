@@ -3,33 +3,34 @@ extends XRController3D
 # Adjust these variables to control the hit animation
 var hitAnimationDuration = 0.2
 var hitRotationAngle = 15
+var lastPos = Vector3(0,0,0)
+var dir = Vector3(0,0,0)
+var sword_hit = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-# func _input(event):
-# 	if Input.is_action_just_pressed("atack"):
-# 		start_hit_animation()
-
-# func start_hit_animation():
-	# var originalRotation = rotation
-	# var targetRotation = originalRotation.rotated(Vector3(0, 1, 0), deg_to_rad(hitRotationAngle))
-
-	# Use a Tween node or a Timer to animate the rotation over time
-	# var tween = Tween.new()
-	# add_child(tween)
-
-	# tween.interpolate_property(self, "rotation", originalRotation, targetRotation, hitAnimationDuration,
-	# 	Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	# tween.start()
-	# tween.connect("tween_completed", self, "_on_tween_completed")
-
-func _on_tween_completed(object: Object, key: NodePath, value: Variant):
-	reset_sword_rotation()
-
-func reset_sword_rotation():
-	rotation = Vector3(0, 0, 0)  # Reset the sword rotation to its original position
+	lastPos = $saber/Marker3D.global_position
+	self.rotation_degrees = Vector3(35,0,0)
 
 func _process(delta):
-	pass
+	if (get_viewport().use_xr == true):
+		dir = ($saber/Marker3D.global_position - lastPos).normalized()
+		lastPos = $saber/Marker3D.global_position
+	else:
+		dir = ($saber/Marker3D.global_position - lastPos).normalized()
+		lastPos = $saber/Marker3D.global_position
+		# p:  x 0, y 0, z -1.852
+		# r: x -83.2, y 0, z 0
+		self.position = Vector3(0,0,-1.85)
+		
+		if (sword_hit != null):
+			if (!sword_hit.is_valid()):
+				self.rotation_degrees = Vector3(35,0,0)
+		else:
+			self.rotation_degrees = Vector3(35,0,0)
+
+		if Input.is_action_just_pressed("atack"):
+			sword_hit = get_tree().create_tween()
+			sword_hit.tween_property(self, "rotation_degrees", Vector3(-90,0,0), 0.2)
+			sword_hit.tween_property(self, "rotation_degrees", Vector3(35,0,0), 0.2)
+	

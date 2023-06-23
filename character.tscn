@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cee1rl5ocxctp"]
+[gd_scene load_steps=7 format=3 uid="uid://cee1rl5ocxctp"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_i6p0h"]
 [ext_resource type="PackedScene" uid="uid://dy6u5two2gyr" path="res://models/saber/scene.gltf" id="2_nm33h"]
@@ -7,13 +7,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iewjx"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e2iqu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pupd"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ofnt7"]
-material = SubResource("StandardMaterial3D_5pupd")
-size = Vector3(0.05, 2, 0.05)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_odaep"]
 size = Vector3(30, 12.828, 200)
@@ -39,20 +32,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="saber_controller" type="XRController3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.118404, 0.992966, 0, -0.992966, 0.118404, 0, 0, -1.85184)
 tracker = &"right_hand"
-pose = &"grip"
+pose = &"aim"
 script = ExtResource("2_q6imq")
 
-[node name="saber_placeholder" type="MeshInstance3D" parent="XROrigin3D/saber_controller"]
-visible = false
-mesh = SubResource("BoxMesh_ofnt7")
-
 [node name="saber" parent="XROrigin3D/saber_controller" instance=ExtResource("2_nm33h")]
-transform = Transform3D(-4.37114e-10, -0.01, -8.74228e-10, 4.37114e-10, -8.74228e-10, 0.01, -0.01, 4.37114e-10, 4.37114e-10, 0, 0, 0)
-metadata/_edit_lock_ = true
+transform = Transform3D(-1.82351e-07, -0.01, 5.07895e-06, -0.00502273, 4.48341e-06, 0.0086471, -0.0086471, -2.39334e-06, -0.00502273, 0, 0.472214, -0.232999)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/saber_controller"]
-transform = Transform3D(-4.37114e-10, -0.01, -8.74228e-10, 4.37114e-10, -8.74228e-10, 0.01, -0.01, 4.37114e-10, 4.37114e-10, -0.1, 0, 0)
+[node name="saber_area" type="Area3D" parent="XROrigin3D/saber_controller/saber"]
+transform = Transform3D(1, -1.45519e-11, 0, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/saber_controller/saber/saber_area"]
+transform = Transform3D(1, -1.45519e-11, 2.98023e-08, 5.82077e-11, 1, 2.91038e-11, -2.98023e-08, 0, 1, -1.52588e-05, 10, 0)
 shape = SubResource("BoxShape3D_odaep")
-metadata/_edit_lock_ = true
+
+[node name="Marker3D" type="Marker3D" parent="XROrigin3D/saber_controller/saber"]
+transform = Transform3D(1, -2.91038e-11, 0, 2.47383e-10, 1, -1.45519e-10, -2.98023e-08, 2.91038e-11, 1, -4.70239, 9.77046, 92.4692)
+
+[connection signal="button_pressed" from="XROrigin3D/saber_controller" to="." method="_on_saber_controller_button_pressed"]
+[connection signal="body_entered" from="XROrigin3D/saber_controller/saber/saber_area" to="." method="_on_saber_area_body_entered"]
