@@ -1,5 +1,6 @@
 extends RigidBody3D
 
+var timer = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,7 +9,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	timer -= delta
+	if timer <= 0:
+		queue_free()
 
 func bat(dir):
 	# self.apply_central_impulse((self.position - saber.global_position).normalized() * 50)

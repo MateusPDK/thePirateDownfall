@@ -21,7 +21,7 @@ func _physics_process(delta):
 
 	# Calculate movement
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	var direction = ($XROrigin3D/XRCamera3D.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (self.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	# Change speed
 	if direction:
 		velocity.x = direction.x * SPEED
