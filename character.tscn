@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cee1rl5ocxctp"]
+[gd_scene load_steps=9 format=3 uid="uid://mrc82ye60iqw"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_i6p0h"]
 [ext_resource type="PackedScene" uid="uid://dy6u5two2gyr" path="res://models/saber/scene.gltf" id="2_nm33h"]

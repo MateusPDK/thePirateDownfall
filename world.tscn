@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsbwatvoixf0f"]
+[gd_scene load_steps=10 format=3 uid="uid://decw2bvcpxvjc"]
 
-[ext_resource type="PackedScene" uid="uid://cee1rl5ocxctp" path="res://character.tscn" id="1_88rye"]
+[ext_resource type="PackedScene" uid="uid://mrc82ye60iqw" path="res://character.tscn" id="1_88rye"]
+[ext_resource type="Script" path="res://world.gd" id="1_phnmt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sfhto"]
 
@@ -25,6 +26,7 @@ size = Vector2(20, 6)
 size = Vector3(20, 0.1, 6)
 
 [node name="world" type="Node3D"]
+script = ExtResource("1_phnmt")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e6mgp")
@@ -40,3 +42,4 @@ mesh = SubResource("PlaneMesh_anc4m")
 shape = SubResource("BoxShape3D_l14bn")
 
 [node name="character" parent="." instance=ExtResource("1_88rye")]
+transform = Transform3D(0.0388587, 0, -0.999245, 0, 1, 0, 0.999245, 0, 0.0388587, 0.501794, 1.21313, 0.849429)
