@@ -51,4 +51,5 @@ shape = SubResource("BoxShape3D_odaep")
 transform = Transform3D(1, -2.91038e-11, 0, 2.47383e-10, 1, -1.45519e-10, -2.98023e-08, 2.91038e-11, 1, -4.70239, 9.77046, 92.4692)
 
 [connection signal="button_pressed" from="XROrigin3D/saber_controller" to="." method="_on_saber_controller_button_pressed"]
+[connection signal="input_vector2_changed" from="XROrigin3D/saber_controller" to="." method="_on_saber_controller_input_vector_2_changed"]
 [connection signal="body_entered" from="XROrigin3D/saber_controller/saber/saber_area" to="." method="_on_saber_area_body_entered"]
