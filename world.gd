@@ -1,7 +1,7 @@
 extends Node3D
 
 var interface=null
-var ball_comp=preload("res://test_ball_2.tscn")
+var ball_comp=preload("res://cannon_ball.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,5 +15,5 @@ func _process(delta):
 	
 func createBall():
 	var ball = ball_comp.instantiate()
-	ball.position = Vector3(.05,10,-1)
+	ball.position = Vector3(-9,0.6,-10)
 	self.add_child(ball)

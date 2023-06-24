@@ -9,7 +9,7 @@ albedo_color = Color(0.211765, 0.211765, 0.211765, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pqkul"]
 
-[node name="cannon_ball" type="RigidBody3D"]
+[node name="cannon_ball" type="RigidBody3D" groups=["cannonball"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17369, 0.633419, 0.482426)
 mass = 30.0
 script = ExtResource("1_qf8id")

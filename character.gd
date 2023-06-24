@@ -65,6 +65,7 @@ func _on_saber_controller_button_pressed(name):
 func _on_saber_area_body_entered(body):
 	if body.is_in_group("cannonball"):
 		body.bat($XROrigin3D/saber_controller.dir)
+		print("cannonball")
 
 func _on_saber_controller_input_vector_2_changed(name, value):
 	print(name)

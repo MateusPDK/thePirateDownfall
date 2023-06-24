@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsbwatvoixf0f"]
+[gd_scene load_steps=11 format=3 uid="uid://bsbwatvoixf0f"]
 
 [ext_resource type="PackedScene" uid="uid://cee1rl5ocxctp" path="res://character.tscn" id="1_88rye"]
 [ext_resource type="Script" path="res://world.gd" id="1_g2jen"]
+[ext_resource type="PackedScene" uid="uid://buwa1gwpyoccv" path="res://cannon_ball.tscn" id="3_1i48b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sfhto"]
 
@@ -43,4 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.64382, 0)
 shape = SubResource("BoxShape3D_l14bn")
 
 [node name="character" parent="." instance=ExtResource("1_88rye")]
-transform = Transform3D(0.0388587, 0, -0.999245, 0, 1, 0, 0.999245, 0, 0.0388587, 0.501794, 1.21313, 0.849429)
+transform = Transform3D(0.999245, 0, 0.0388587, 0, 1, 0, -0.0388587, 0, 0.999245, -9.55664, 1.21313, 0.849429)
+
+[node name="cannon_ball" parent="." instance=ExtResource("3_1i48b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.6, -10)
