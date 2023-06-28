@@ -1,30 +1,57 @@
-[gd_scene load_steps=11 format=3 uid="uid://bsbwatvoixf0f"]
+[gd_scene load_steps=20 format=3 uid="uid://bsbwatvoixf0f"]
 
 [ext_resource type="PackedScene" uid="uid://cee1rl5ocxctp" path="res://character.tscn" id="1_88rye"]
 [ext_resource type="Script" path="res://world.gd" id="1_g2jen"]
+[ext_resource type="Material" uid="uid://gj7unifq4v2b" path="res://wood_1.tres" id="2_o834h"]
+[ext_resource type="Texture2D" uid="uid://dqpxnckxdrh5i" path="res://textures/wood.jpg" id="2_p4qm3"]
 [ext_resource type="PackedScene" uid="uid://buwa1gwpyoccv" path="res://cannon_ball.tscn" id="3_1i48b"]
+[ext_resource type="PackedScene" uid="uid://dord4nvjdsktk" path="res://Scenes/Waterplane.tscn" id="4_ecog1"]
+[ext_resource type="PackedScene" uid="uid://ch4y6vjglaiey" path="res://models/ship/scene.gltf" id="5_7weag"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sfhto"]
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_dtnp6"]
+sun_disk_scale = 1.03
+ground_color = Color(0.215686, 0.427451, 0.411765, 1)
 
-[sub_resource type="Sky" id="Sky_hj8xb"]
-sky_material = SubResource("ProceduralSkyMaterial_sfhto")
+[sub_resource type="Sky" id="Sky_31phi"]
+sky_material = SubResource("PhysicalSkyMaterial_dtnp6")
 
 [sub_resource type="Environment" id="Environment_e6mgp"]
 background_mode = 2
 background_energy_multiplier = 1.3
-sky = SubResource("Sky_hj8xb")
+sky = SubResource("Sky_31phi")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_4eaxw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6yq8w"]
-albedo_color = Color(0.458824, 0.184314, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_anc4m"]
-material = SubResource("StandardMaterial3D_6yq8w")
-size = Vector2(20, 6)
+[sub_resource type="BoxMesh" id="BoxMesh_wi8oq"]
+material = ExtResource("2_o834h")
+size = Vector3(20, 6, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l14bn"]
 size = Vector3(20, 7.29869, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixne6"]
+albedo_color = Color(0.592157, 0.337255, 0.203922, 1)
+albedo_texture = ExtResource("2_p4qm3")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dkstm"]
+material = SubResource("StandardMaterial3D_ixne6")
+size = Vector3(0.75, 20, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skiyl"]
+albedo_color = Color(0.592157, 0.337255, 0.203922, 1)
+albedo_texture = ExtResource("2_p4qm3")
+uv1_scale = Vector3(6, 6, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wcdb5"]
+material = SubResource("StandardMaterial3D_skiyl")
+size = Vector3(4, 4, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wgt2o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mb8ao"]
+material = SubResource("StandardMaterial3D_wgt2o")
+size = Vector3(4, 0.75, 0.1)
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_g2jen")
@@ -37,14 +64,47 @@ camera_attributes = SubResource("CameraAttributesPractical_4eaxw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.676129, 0)
 
 [node name="deck" type="MeshInstance3D" parent="main_ship"]
-mesh = SubResource("PlaneMesh_anc4m")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9251, 0)
+mesh = SubResource("BoxMesh_wi8oq")
 
 [node name="deck_hitbox" type="CollisionShape3D" parent="main_ship"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.64382, 0)
 shape = SubResource("BoxShape3D_l14bn")
+
+[node name="deck_rails" type="MeshInstance3D" parent="main_ship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 2.95)
+mesh = SubResource("BoxMesh_dkstm")
+skeleton = NodePath("../deck")
+
+[node name="deck_rails2" type="MeshInstance3D" parent="main_ship"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0.38, -2.95)
+mesh = SubResource("BoxMesh_dkstm")
+skeleton = NodePath("../deck")
+
+[node name="deck_back" type="MeshInstance3D" parent="main_ship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.73067, -0.2141, 0)
+mesh = SubResource("BoxMesh_wcdb5")
+skeleton = NodePath("../deck")
+
+[node name="deck_rails3" type="MeshInstance3D" parent="main_ship"]
+transform = Transform3D(0.702377, 0, 0.711805, 0, 1, 0, -0.711805, 0, 0.702377, -11.2241, 0.38, -1.49843)
+mesh = SubResource("BoxMesh_mb8ao")
+skeleton = NodePath("../deck")
 
 [node name="character" parent="." instance=ExtResource("1_88rye")]
 transform = Transform3D(0.999245, 0, 0.0388587, 0, 1, 0, -0.0388587, 0, 0.999245, -9.55664, 1.21313, 0.849429)
 
 [node name="cannon_ball" parent="." instance=ExtResource("3_1i48b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.6, -10)
+
+[node name="Waterplane" parent="." instance=ExtResource("4_ecog1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.71314, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.59961, 0.800292, 0, -0.800292, 0.59961, 0, 6.12547, 0)
+light_color = Color(0.854902, 0.87451, 0.792157, 1)
+light_energy = 1.97
+shadow_enabled = true
+
+[node name="ship" parent="." instance=ExtResource("5_7weag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.3756, 0, 0)

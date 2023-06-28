@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://mivncjmxneu3" path="res://Shaders/Water.tres" id="1_eylo1"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g7yvh"]
-size = Vector2(20, 20)
+size = Vector2(1000, 1000)
 subdivide_width = 200
 subdivide_depth = 200
 orientation = 1
