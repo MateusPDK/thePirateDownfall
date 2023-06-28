@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://buwa1gwpyoccv"]
+
+[ext_resource type="Script" path="res://cannon_ball.gd" id="1_qf8id"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcrfk"]
+albedo_color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ky0bx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pqkul"]
+
+[node name="cannon_ball" type="RigidBody3D" groups=["cannonball"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17369, 0.633419, 0.482426)
+mass = 30.0
+script = ExtResource("1_qf8id")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_lcrfk")
+mesh = SubResource("SphereMesh_ky0bx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_pqkul")
