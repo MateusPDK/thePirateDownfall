@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bblogf87t5g1r"]
+
+[ext_resource type="PackedScene" uid="uid://dord4nvjdsktk" path="res://Scenes/WaterPlane.tscn" id="1_2cxjj"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m4asp"]
+top_radius = 10.0
+bottom_radius = 10.0
+height = 20.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_yq60x"]
+
+[node name="Map" type="Node3D"]
+
+[node name="Waterplane" parent="." instance=ExtResource("1_2cxjj")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -1.95507, -0.857178, 0)
+mesh = SubResource("CylinderMesh_m4asp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0828966, -0.228168, -0.196827)
+mesh = SubResource("SphereMesh_yq60x")
