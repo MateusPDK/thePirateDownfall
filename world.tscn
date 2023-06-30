@@ -1,10 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://bsbwatvoixf0f"]
+[gd_scene load_steps=31 format=3 uid="uid://bsbwatvoixf0f"]
 
 [ext_resource type="PackedScene" uid="uid://cee1rl5ocxctp" path="res://character.tscn" id="1_88rye"]
 [ext_resource type="Script" path="res://world.gd" id="1_g2jen"]
-[ext_resource type="PackedScene" uid="uid://buwa1gwpyoccv" path="res://cannon_ball.tscn" id="3_1i48b"]
 [ext_resource type="PackedScene" uid="uid://dord4nvjdsktk" path="res://Scenes/Waterplane.tscn" id="4_ecog1"]
 [ext_resource type="PackedScene" uid="uid://ch4y6vjglaiey" path="res://models/ship/scene.gltf" id="5_7weag"]
+[ext_resource type="FontFile" uid="uid://xtjuk847kt3k" path="res://fonts/darkestpearl.ttf" id="6_1s56t"]
 [ext_resource type="PackedScene" uid="uid://dfc5pcc4wo034" path="res://models/russian_chebeque_minerva/scene.gltf" id="8_gbwic"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_dtnp6"]
@@ -75,7 +75,14 @@ size = Vector3(8.19945, 1, 8)
 [sub_resource type="BoxShape3D" id="BoxShape3D_djmaw"]
 size = Vector3(7.02321, 1, 5.74363)
 
+[sub_resource type="LabelSettings" id="LabelSettings_c3sag"]
+font = ExtResource("6_1s56t")
+
+[sub_resource type="LabelSettings" id="LabelSettings_olh3t"]
+font = ExtResource("6_1s56t")
+
 [node name="world" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.396912, 0, 0)
 script = ExtResource("1_g2jen")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -83,10 +90,7 @@ environment = SubResource("Environment_e6mgp")
 camera_attributes = SubResource("CameraAttributesPractical_4eaxw")
 
 [node name="character" parent="." instance=ExtResource("1_88rye")]
-transform = Transform3D(0.999245, 0, 0.0388587, 0, 1, 0, -0.0388587, 0, 0.999245, -9.55664, 1.21313, 0.849429)
-
-[node name="cannon_ball" parent="." instance=ExtResource("3_1i48b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.6, -10)
+transform = Transform3D(-0.0388587, 0, 0.999245, 0, 1, 0, -0.999245, 0, -0.0388587, 0, 1.15, 5)
 
 [node name="Waterplane" parent="." instance=ExtResource("4_ecog1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.71314, 0)
@@ -97,11 +101,11 @@ light_color = Color(0.854902, 0.87451, 0.792157, 1)
 light_energy = 1.97
 shadow_enabled = true
 
-[node name="ship" parent="." instance=ExtResource("5_7weag")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -97.3756, 4.36281, 0)
+[node name="enemy_ship" parent="." instance=ExtResource("5_7weag")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -165, 4.5, 0)
 
 [node name="mc_ship" parent="." instance=ExtResource("8_gbwic")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [node name="deck" type="StaticBody3D" parent="mc_ship"]
 
@@ -212,3 +216,21 @@ shape = SubResource("BoxShape3D_djmaw")
 [node name="side-back9" type="CollisionShape3D" parent="mc_ship/side-front"]
 transform = Transform3D(-0.0610441, -0.97599, 0.209087, 0.986996, -0.027816, 0.158318, -0.1487, 0.216033, 0.964996, -3.53062, 1.12603, 14.1631)
 shape = SubResource("BoxShape3D_ji12m")
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="shooted" type="Label" parent="UI"]
+offset_left = 11.0
+offset_top = 614.0
+offset_right = 51.0
+offset_bottom = 637.0
+text = "Total: 0"
+label_settings = SubResource("LabelSettings_c3sag")
+
+[node name="hits" type="Label" parent="UI"]
+offset_left = 11.0
+offset_top = 583.0
+offset_right = 51.0
+offset_bottom = 606.0
+text = "Hits: 0"
+label_settings = SubResource("LabelSettings_olh3t")
