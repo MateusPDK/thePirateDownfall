@@ -1,11 +1,14 @@
-[gd_scene load_steps=31 format=3 uid="uid://bsbwatvoixf0f"]
+[gd_scene load_steps=35 format=3 uid="uid://bsbwatvoixf0f"]
 
 [ext_resource type="PackedScene" uid="uid://cee1rl5ocxctp" path="res://character.tscn" id="1_88rye"]
 [ext_resource type="Script" path="res://world.gd" id="1_g2jen"]
 [ext_resource type="PackedScene" uid="uid://dord4nvjdsktk" path="res://Scenes/Waterplane.tscn" id="4_ecog1"]
 [ext_resource type="PackedScene" uid="uid://ch4y6vjglaiey" path="res://models/ship/scene.gltf" id="5_7weag"]
 [ext_resource type="FontFile" uid="uid://xtjuk847kt3k" path="res://fonts/darkestpearl.ttf" id="6_1s56t"]
+[ext_resource type="Script" path="res://models/russian_chebeque_minerva/scene.gd" id="6_2gefr"]
+[ext_resource type="AudioStream" uid="uid://dncodyl88mdhj" path="res://sfx/he's_a_pirate.mp3" id="8_0wwor"]
 [ext_resource type="PackedScene" uid="uid://dfc5pcc4wo034" path="res://models/russian_chebeque_minerva/scene.gltf" id="8_gbwic"]
+[ext_resource type="AudioStream" uid="uid://uvh80br22lqb" path="res://sfx/you_died.mp3" id="9_d52pu"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_dtnp6"]
 sun_disk_scale = 1.03
@@ -30,6 +33,10 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ljjbc"]
 size = Vector3(5, 1, 8)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_llb1o"]
+height = 9.0
+radius = 0.6
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_uu04t"]
 size = Vector3(9, 0.2, 6)
 
@@ -39,11 +46,8 @@ size = Vector3(9, 0.2, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hx1m8"]
 size = Vector3(5.51296, 0.2, 9.08328)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vdkxj"]
-size = Vector3(1.58725, 0.2, 3.88907)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_58qca"]
-size = Vector3(1.22495, 0.2, 3.13087)
+size = Vector3(1.22495, 0.2, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ovma"]
 size = Vector3(1.225, 0.2, 1)
@@ -76,7 +80,13 @@ size = Vector3(8.19945, 1, 8)
 size = Vector3(7.02321, 1, 5.74363)
 
 [sub_resource type="LabelSettings" id="LabelSettings_c3sag"]
+line_spacing = 20.0
 font = ExtResource("6_1s56t")
+
+[sub_resource type="LabelSettings" id="LabelSettings_wi3xa"]
+line_spacing = 20.0
+font = ExtResource("6_1s56t")
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_olh3t"]
 font = ExtResource("6_1s56t")
@@ -90,7 +100,7 @@ environment = SubResource("Environment_e6mgp")
 camera_attributes = SubResource("CameraAttributesPractical_4eaxw")
 
 [node name="character" parent="." instance=ExtResource("1_88rye")]
-transform = Transform3D(-0.0388587, 0, 0.999245, 0, 1, 0, -0.999245, 0, -0.0388587, 0, 1.15, 5)
+transform = Transform3D(0.221089, 0, 0.975254, 0, 1, 0, -0.975254, 0, 0.221089, 0, 1.15, 5)
 
 [node name="Waterplane" parent="." instance=ExtResource("4_ecog1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.71314, 0)
@@ -106,6 +116,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -165, 4.5, 0)
 
 [node name="mc_ship" parent="." instance=ExtResource("8_gbwic")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+script = ExtResource("6_2gefr")
 
 [node name="deck" type="StaticBody3D" parent="mc_ship"]
 
@@ -120,6 +131,10 @@ shape = SubResource("BoxShape3D_25jr8")
 [node name="main-deck3" type="CollisionShape3D" parent="mc_ship/deck"]
 transform = Transform3D(1, 0, 0, 0, 0.996476, -0.0838867, 0, 0.0838867, 0.996476, 0, 0.498799, -8.75772)
 shape = SubResource("BoxShape3D_ljjbc")
+
+[node name="main-deck4" type="CollisionShape3D" parent="mc_ship/deck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00168443, 5.55707, 0.571693)
+shape = SubResource("CylinderShape3D_llb1o")
 
 [node name="deck-up" type="StaticBody3D" parent="mc_ship"]
 
@@ -137,25 +152,37 @@ shape = SubResource("BoxShape3D_hx1m8")
 
 [node name="steps" type="StaticBody3D" parent="mc_ship"]
 
-[node name="up2" type="CollisionShape3D" parent="mc_ship/steps"]
-transform = Transform3D(1, 0, 0, 0, 0.70219, -0.711989, 0, 0.711989, 0.70219, -2.90033, 1.37978, -5.53439)
-shape = SubResource("BoxShape3D_vdkxj")
-
-[node name="up6" type="CollisionShape3D" parent="mc_ship/steps"]
-transform = Transform3D(1, 0, 0, 0, 0.70219, -0.711989, 0, 0.711989, 0.70219, 3.01232, 1.37978, -5.53439)
-shape = SubResource("BoxShape3D_vdkxj")
-
 [node name="up3" type="CollisionShape3D" parent="mc_ship/steps"]
-transform = Transform3D(1, 0, 0, 0, 0.682432, 0.730949, 0, -0.730949, 0.682432, -2.90033, 1.38737, 11.3353)
+transform = Transform3D(1, 0, 0, 0, 0.682419, 0.730961, 0, -0.730961, 0.682419, -2.90033, 1.38737, 11.2798)
 shape = SubResource("BoxShape3D_58qca")
 
 [node name="up5" type="CollisionShape3D" parent="mc_ship/steps"]
-transform = Transform3D(1, 0, 0, 0, 0.8398, 0.542896, 0, -0.542896, 0.8398, -2.90033, 0.776787, 10.6231)
+transform = Transform3D(1, 0, 0, 0, 0.902262, 0.431188, 0, -0.431188, 0.902262, -2.90033, 0.776787, 10.5271)
 shape = SubResource("BoxShape3D_6ovma")
 
-[node name="up4" type="CollisionShape3D" parent="mc_ship/steps"]
-transform = Transform3D(1, 0, 0, 0, 0.682432, 0.730949, 0, -0.730949, 0.682432, 2.98426, 1.45592, 11.3537)
+[node name="up7" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(1, 0, 0, 0, 0.682419, 0.730961, 0, -0.730961, 0.682419, 3.04893, 1.38737, 11.2798)
 shape = SubResource("BoxShape3D_58qca")
+
+[node name="up8" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(1, 0, 0, 0, 0.902262, 0.431188, 0, -0.431188, 0.902262, 3.04893, 0.776787, 10.5271)
+shape = SubResource("BoxShape3D_6ovma")
+
+[node name="up9" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(-1, 6.39027e-08, -5.9659e-08, 5.56851e-09, 0.727593, 0.686009, 8.72452e-08, 0.686009, -0.727593, 3.04893, 1.4277, -5.41102)
+shape = SubResource("BoxShape3D_58qca")
+
+[node name="up10" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(-1, 3.76957e-08, -7.88783e-08, -2.36848e-15, 0.902262, 0.431188, 8.74228e-08, 0.431188, -0.902262, 3.04893, 0.68378, -4.65837)
+shape = SubResource("BoxShape3D_6ovma")
+
+[node name="up11" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(-1, 6.39027e-08, -5.9659e-08, 5.56851e-09, 0.727593, 0.686009, 8.72452e-08, 0.686009, -0.727593, -2.90255, 1.4277, -5.41102)
+shape = SubResource("BoxShape3D_58qca")
+
+[node name="up12" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(-1, 3.76957e-08, -7.88783e-08, -2.36848e-15, 0.902262, 0.431188, 8.74228e-08, 0.431188, -0.902262, -2.90255, 0.68378, -4.65837)
+shape = SubResource("BoxShape3D_6ovma")
 
 [node name="side-back" type="StaticBody3D" parent="mc_ship"]
 
@@ -227,6 +254,17 @@ offset_bottom = 637.0
 text = "Total: 0"
 label_settings = SubResource("LabelSettings_c3sag")
 
+[node name="game_over" type="Label" parent="UI"]
+visible = false
+offset_left = 432.0
+offset_top = 250.0
+offset_right = 782.0
+offset_bottom = 390.0
+text = "Game Over !"
+label_settings = SubResource("LabelSettings_wi3xa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="hits" type="Label" parent="UI"]
 offset_left = 11.0
 offset_top = 583.0
@@ -234,3 +272,12 @@ offset_right = 51.0
 offset_bottom = 606.0
 text = "Hits: 0"
 label_settings = SubResource("LabelSettings_olh3t")
+
+[node name="song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_0wwor")
+volume_db = -5.0
+autoplay = true
+
+[node name="gameover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_d52pu")
+volume_db = 2.0

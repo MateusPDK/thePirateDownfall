@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cee1rl5ocxctp"]
+[gd_scene load_steps=8 format=3 uid="uid://cee1rl5ocxctp"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_i6p0h"]
 [ext_resource type="PackedScene" uid="uid://dy6u5two2gyr" path="res://models/saber/scene.gltf" id="2_nm33h"]
 [ext_resource type="Script" path="res://saber_controller.gd" id="2_q6imq"]
+[ext_resource type="AudioStream" uid="uid://c45iv3xr6sj02" path="res://sfx/slice.mp3" id="4_nqfcu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iewjx"]
 
@@ -49,6 +50,9 @@ shape = SubResource("BoxShape3D_odaep")
 
 [node name="Marker3D" type="Marker3D" parent="XROrigin3D/saber_controller/saber"]
 transform = Transform3D(1, -2.91038e-11, 0, 2.47383e-10, 1, -1.45519e-10, -2.98023e-08, 2.91038e-11, 1, -4.70239, 9.77046, 92.4692)
+
+[node name="slice" type="AudioStreamPlayer3D" parent="XROrigin3D/saber_controller"]
+stream = ExtResource("4_nqfcu")
 
 [connection signal="button_pressed" from="XROrigin3D/saber_controller" to="." method="_on_saber_controller_button_pressed"]
 [connection signal="input_vector2_changed" from="XROrigin3D/saber_controller" to="." method="_on_saber_controller_input_vector_2_changed"]

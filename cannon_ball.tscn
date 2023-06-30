@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://buwa1gwpyoccv"]
+[gd_scene load_steps=6 format=3 uid="uid://buwa1gwpyoccv"]
 
 [ext_resource type="Script" path="res://cannon_ball.gd" id="1_qf8id"]
+[ext_resource type="AudioStream" uid="uid://oh1n30q1aty4" path="res://sfx/cannon.mp3" id="2_ybnrs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcrfk"]
 albedo_color = Color(0.211765, 0.211765, 0.211765, 1)
@@ -20,3 +21,7 @@ mesh = SubResource("SphereMesh_ky0bx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_pqkul")
+
+[node name="cannon_fired" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_ybnrs")
+volume_db = 10.0

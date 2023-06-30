@@ -19,6 +19,10 @@ func _process(delta):
 	pos_old = self.position
 
 func disparar():
+	# SFX
+	$cannon_fired.play()
+	
+	# Update UI
 	var world = get_node("..")
 	world.total_counter = world.total_counter + 1
 	var shooted_label = get_node("../UI/shooted")

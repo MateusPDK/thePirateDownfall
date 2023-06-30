@@ -4,7 +4,6 @@ const SPEED = 5.0
 var rotate_speed=0.005
 var cannon_count = 0
 var direction = Vector3(0,0,0)
-var hit_count = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -65,10 +64,12 @@ func _on_saber_controller_button_pressed(name):
 
 func _on_saber_area_body_entered(body):
 	if body.is_in_group("cannonball"):
+		$XROrigin3D/saber_controller/slice.play()
 		body.bat($XROrigin3D/saber_controller.dir)
-		hit_count = hit_count + 1
+		var world = get_node("..")
+		world.hit_counter = world.hit_counter + 1
 		var hits_label = get_node("../UI/hits")
-		hits_label.text = "Hits: " + str(hit_count)
+		hits_label.text = "Hits: " + str(world.hit_counter)
 
 func _on_saber_controller_input_vector_2_changed(name, value):
 	direction = Vector3(value.x, 0, -value.y)
