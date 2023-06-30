@@ -4,7 +4,6 @@ var timer = 10
 var pos_old = Vector3(0,0,0)
 var dir = Vector3(0,0,0)
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	disparar()
@@ -51,5 +50,4 @@ func bat(vdir):
 	if get_viewport().use_xr == false:
 		dir = Vector3(0,0,-1) * 10
 		vdir = dir
-
-	self.apply_central_impulse(vdir.normalized() * 1000000)
+	self.apply_central_impulse(vdir.normalized() * 100)

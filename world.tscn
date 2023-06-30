@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bsbwatvoixf0f"]
+[gd_scene load_steps=36 format=3 uid="uid://bsbwatvoixf0f"]
 
 [ext_resource type="PackedScene" uid="uid://cee1rl5ocxctp" path="res://character.tscn" id="1_88rye"]
 [ext_resource type="Script" path="res://world.gd" id="1_g2jen"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ch4y6vjglaiey" path="res://models/ship/scene.gltf" id="5_7weag"]
 [ext_resource type="FontFile" uid="uid://xtjuk847kt3k" path="res://fonts/darkestpearl.ttf" id="6_1s56t"]
 [ext_resource type="Script" path="res://models/russian_chebeque_minerva/scene.gd" id="6_2gefr"]
+[ext_resource type="Script" path="res://UI.gd" id="7_n11p3"]
 [ext_resource type="AudioStream" uid="uid://dncodyl88mdhj" path="res://sfx/he's_a_pirate.mp3" id="8_0wwor"]
 [ext_resource type="PackedScene" uid="uid://dfc5pcc4wo034" path="res://models/russian_chebeque_minerva/scene.gltf" id="8_gbwic"]
 [ext_resource type="AudioStream" uid="uid://uvh80br22lqb" path="res://sfx/you_died.mp3" id="9_d52pu"]
@@ -82,6 +83,7 @@ size = Vector3(7.02321, 1, 5.74363)
 [sub_resource type="LabelSettings" id="LabelSettings_c3sag"]
 line_spacing = 20.0
 font = ExtResource("6_1s56t")
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_wi3xa"]
 line_spacing = 20.0
@@ -90,6 +92,7 @@ font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_olh3t"]
 font = ExtResource("6_1s56t")
+font_size = 30
 
 [node name="world" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.396912, 0, 0)
@@ -245,31 +248,56 @@ transform = Transform3D(-0.0610441, -0.97599, 0.209087, 0.986996, -0.027816, 0.1
 shape = SubResource("BoxShape3D_ji12m")
 
 [node name="UI" type="Node2D" parent="."]
+process_mode = 3
+script = ExtResource("7_n11p3")
 
 [node name="shooted" type="Label" parent="UI"]
-offset_left = 11.0
-offset_top = 614.0
-offset_right = 51.0
-offset_bottom = 637.0
+offset_left = 28.0
+offset_top = 501.0
+offset_right = 155.0
+offset_bottom = 557.0
 text = "Total: 0"
 label_settings = SubResource("LabelSettings_c3sag")
 
 [node name="game_over" type="Label" parent="UI"]
 visible = false
+offset_left = 259.0
+offset_top = 245.0
+offset_right = 875.0
+offset_bottom = 401.0
+text = "Game Over !
+Press Esc to restart"
+label_settings = SubResource("LabelSettings_wi3xa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="paused" type="Label" parent="UI"]
+visible = false
 offset_left = 432.0
 offset_top = 250.0
 offset_right = 782.0
 offset_bottom = 390.0
-text = "Game Over !"
+text = "Pause"
+label_settings = SubResource("LabelSettings_wi3xa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="win" type="Label" parent="UI"]
+visible = false
+offset_left = 432.0
+offset_top = 250.0
+offset_right = 782.0
+offset_bottom = 390.0
+text = "You Win !"
 label_settings = SubResource("LabelSettings_wi3xa")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="hits" type="Label" parent="UI"]
-offset_left = 11.0
-offset_top = 583.0
-offset_right = 51.0
-offset_bottom = 606.0
+offset_left = 35.0
+offset_top = 580.0
+offset_right = 141.0
+offset_bottom = 619.0
 text = "Hits: 0"
 label_settings = SubResource("LabelSettings_olh3t")
 

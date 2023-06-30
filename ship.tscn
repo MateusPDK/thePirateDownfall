@@ -2,4 +2,4 @@
 
 [ext_resource type="PackedScene" uid="uid://ch4y6vjglaiey" path="res://models/ship/scene.gltf" id="1_qu7f2"]
 
-[node name="scene" instance=ExtResource("1_qu7f2")]
+[node name="enemy_ship" instance=ExtResource("1_qu7f2")]
