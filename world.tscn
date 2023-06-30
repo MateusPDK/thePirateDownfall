@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bsbwatvoixf0f"]
+[gd_scene load_steps=39 format=3 uid="uid://bsbwatvoixf0f"]
 
 [ext_resource type="PackedScene" uid="uid://cee1rl5ocxctp" path="res://character.tscn" id="1_88rye"]
 [ext_resource type="Script" path="res://world.gd" id="1_g2jen"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://buwa1gwpyoccv" path="res://cannon_ball.tscn" id="3_1i48b"]
 [ext_resource type="PackedScene" uid="uid://dord4nvjdsktk" path="res://Scenes/Waterplane.tscn" id="4_ecog1"]
 [ext_resource type="PackedScene" uid="uid://ch4y6vjglaiey" path="res://models/ship/scene.gltf" id="5_7weag"]
+[ext_resource type="PackedScene" uid="uid://dfc5pcc4wo034" path="res://models/russian_chebeque_minerva/scene.gltf" id="8_gbwic"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_dtnp6"]
 sun_disk_scale = 1.03
@@ -53,6 +54,60 @@ size = Vector3(4, 4, 6)
 material = SubResource("StandardMaterial3D_wgt2o")
 size = Vector3(4, 0.75, 0.1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nfg41"]
+size = Vector3(9, 1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_25jr8"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ljjbc"]
+size = Vector3(5, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uu04t"]
+size = Vector3(9, 0.2, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r7gln"]
+size = Vector3(9, 0.2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hx1m8"]
+size = Vector3(5.51296, 0.2, 9.08328)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vdkxj"]
+size = Vector3(1.58725, 0.2, 3.88907)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_58qca"]
+size = Vector3(1.22495, 0.2, 3.13087)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ovma"]
+size = Vector3(1.225, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pxb54"]
+size = Vector3(5, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a516m"]
+size = Vector3(5, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gqjqf"]
+size = Vector3(5, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1kiy3"]
+size = Vector3(5, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4uskh"]
+size = Vector3(5, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4wflu"]
+size = Vector3(4, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ji12m"]
+size = Vector3(4, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nss5w"]
+size = Vector3(8.19945, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_djmaw"]
+size = Vector3(7.02321, 1, 5.74363)
+
 [node name="world" type="Node3D"]
 script = ExtResource("1_g2jen")
 
@@ -61,7 +116,7 @@ environment = SubResource("Environment_e6mgp")
 camera_attributes = SubResource("CameraAttributesPractical_4eaxw")
 
 [node name="main_ship" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.676129, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.676129, -69.2139)
 
 [node name="deck" type="MeshInstance3D" parent="main_ship"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9251, 0)
@@ -93,12 +148,15 @@ skeleton = NodePath("../deck")
 
 [node name="character" parent="." instance=ExtResource("1_88rye")]
 transform = Transform3D(0.999245, 0, 0.0388587, 0, 1, 0, -0.0388587, 0, 0.999245, -9.55664, 1.21313, 0.849429)
+visible = false
 
 [node name="cannon_ball" parent="." instance=ExtResource("3_1i48b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.6, -10)
+visible = false
 
 [node name="Waterplane" parent="." instance=ExtResource("4_ecog1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.71314, 0)
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.59961, 0.800292, 0, -0.800292, 0.59961, 0, 6.12547, 0)
@@ -107,4 +165,120 @@ light_energy = 1.97
 shadow_enabled = true
 
 [node name="ship" parent="." instance=ExtResource("5_7weag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.3756, 0, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -97.3756, 4.36281, 0)
+visible = false
+
+[node name="mc_ship" parent="." instance=ExtResource("8_gbwic")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="deck" type="StaticBody3D" parent="mc_ship"]
+
+[node name="main-deck" type="CollisionShape3D" parent="mc_ship/deck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57681, 0)
+shape = SubResource("BoxShape3D_nfg41")
+
+[node name="main-deck2" type="CollisionShape3D" parent="mc_ship/deck"]
+transform = Transform3D(1, 0, 0, 0, 0.992937, -0.118647, 0, 0.118647, 0.992937, 0, 0.942369, -13.3393)
+shape = SubResource("BoxShape3D_25jr8")
+
+[node name="main-deck3" type="CollisionShape3D" parent="mc_ship/deck"]
+transform = Transform3D(1, 0, 0, 0, 0.996476, -0.0838867, 0, 0.0838867, 0.996476, 0, 0.498799, -8.75772)
+shape = SubResource("BoxShape3D_ljjbc")
+
+[node name="deck-up" type="StaticBody3D" parent="mc_ship"]
+
+[node name="main-deck" type="CollisionShape3D" parent="mc_ship/deck-up"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53534, 15.3101)
+shape = SubResource("BoxShape3D_uu04t")
+
+[node name="main-deck2" type="CollisionShape3D" parent="mc_ship/deck-up"]
+transform = Transform3D(1, 0, 0, 0, 0.992245, -0.124294, 0, 0.124294, 0.992245, 0, 3.21357, -12.0254)
+shape = SubResource("BoxShape3D_r7gln")
+
+[node name="main-deck3" type="CollisionShape3D" parent="mc_ship/deck-up"]
+transform = Transform3D(1, 0, 0, 0, 0.970599, -0.240702, 0, 0.240702, 0.970599, 0, 3.84494, -17.0218)
+shape = SubResource("BoxShape3D_hx1m8")
+
+[node name="steps" type="StaticBody3D" parent="mc_ship"]
+
+[node name="up2" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(1, 0, 0, 0, 0.70219, -0.711989, 0, 0.711989, 0.70219, -2.90033, 1.37978, -5.53439)
+shape = SubResource("BoxShape3D_vdkxj")
+
+[node name="up6" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(1, 0, 0, 0, 0.70219, -0.711989, 0, 0.711989, 0.70219, 3.01232, 1.37978, -5.53439)
+shape = SubResource("BoxShape3D_vdkxj")
+
+[node name="up3" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(1, 0, 0, 0, 0.682432, 0.730949, 0, -0.730949, 0.682432, -2.90033, 1.38737, 11.3353)
+shape = SubResource("BoxShape3D_58qca")
+
+[node name="up5" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(1, 0, 0, 0, 0.8398, 0.542896, 0, -0.542896, 0.8398, -2.90033, 0.776787, 10.6231)
+shape = SubResource("BoxShape3D_6ovma")
+
+[node name="up4" type="CollisionShape3D" parent="mc_ship/steps"]
+transform = Transform3D(1, 0, 0, 0, 0.682432, 0.730949, 0, -0.730949, 0.682432, 2.98426, 1.45592, 11.3537)
+shape = SubResource("BoxShape3D_58qca")
+
+[node name="side-back" type="StaticBody3D" parent="mc_ship"]
+visible = false
+
+[node name="side-back" type="CollisionShape3D" parent="mc_ship/side-back"]
+transform = Transform3D(-4.35865e-08, -0.997143, 0.0755356, 1, -4.37114e-08, 0, 3.30177e-09, 0.0755356, 0.997143, 3.60385, 1.59516, -10.2793)
+shape = SubResource("BoxShape3D_ljjbc")
+
+[node name="side-back8" type="CollisionShape3D" parent="mc_ship/side-back"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 5.12398, -21.4486)
+shape = SubResource("BoxShape3D_pxb54")
+
+[node name="side-back5" type="CollisionShape3D" parent="mc_ship/side-back"]
+transform = Transform3D(-4.23493e-08, -0.968839, 0.247692, 0.996606, -0.0203904, -0.079756, 0.0823212, 0.246852, 0.965551, 2.56289, 0.927536, -14.915)
+shape = SubResource("BoxShape3D_a516m")
+
+[node name="side-back6" type="CollisionShape3D" parent="mc_ship/side-back"]
+transform = Transform3D(-0.0419791, -0.959284, -0.279308, 0.996606, -0.0203904, -0.079756, 0.0708134, -0.281708, 0.956884, -2.35416, 0.927536, -14.915)
+shape = SubResource("BoxShape3D_a516m")
+
+[node name="side-back7" type="CollisionShape3D" parent="mc_ship/side-back"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 0.966142, 0.25801, -1.1278e-08, -0.25801, 0.966143, -4.22314e-08, -0.482617, 1.19619, -16.5093)
+shape = SubResource("BoxShape3D_a516m")
+
+[node name="side-back4" type="CollisionShape3D" parent="mc_ship/side-back"]
+transform = Transform3D(-4.35325e-08, -0.995908, -0.0903718, 1, -4.37114e-08, 6.05243e-17, -3.95028e-09, -0.0903718, 0.995908, -3.53485, 1.59516, -10.2793)
+shape = SubResource("BoxShape3D_gqjqf")
+
+[node name="side-back2" type="CollisionShape3D" parent="mc_ship/side-back"]
+transform = Transform3D(-0.00982755, -0.982661, 0.185153, 0.994037, -0.0297101, -0.104918, 0.1086, 0.183018, 0.977093, 2.75868, 2.50788, -16.3643)
+shape = SubResource("BoxShape3D_1kiy3")
+
+[node name="side-back3" type="CollisionShape3D" parent="mc_ship/side-back"]
+transform = Transform3D(-0.0516826, -0.975598, -0.213398, 0.994037, -0.0297101, -0.104918, 0.0960179, -0.217548, 0.971316, -2.53431, 2.50788, -16.3643)
+shape = SubResource("BoxShape3D_4uskh")
+
+[node name="side-main-D" type="CollisionShape3D" parent="mc_ship/side-back"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3.95209, 0.326258, 2.21308)
+shape = SubResource("BoxShape3D_4wflu")
+
+[node name="side-main-E" type="CollisionShape3D" parent="mc_ship/side-back"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.02039, 0.326258, 2.21308)
+shape = SubResource("BoxShape3D_4wflu")
+
+[node name="side-front" type="StaticBody3D" parent="mc_ship"]
+visible = false
+
+[node name="side-back8" type="CollisionShape3D" parent="mc_ship/side-front"]
+transform = Transform3D(0.0110561, -0.970833, -0.2395, 0.986996, -0.027816, 0.158318, -0.160362, -0.238136, 0.957902, 3.35024, 1.12603, 14.1631)
+shape = SubResource("BoxShape3D_ji12m")
+
+[node name="side-back10" type="CollisionShape3D" parent="mc_ship/side-front"]
+transform = Transform3D(1, 0, 0, 0, 0.996422, 0.0845127, 0, -0.0845126, 0.996422, 0.00482114, 0.88786, 14.1631)
+shape = SubResource("BoxShape3D_nss5w")
+
+[node name="side-back11" type="CollisionShape3D" parent="mc_ship/side-front"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.221377, 1.15406, 17.7804)
+shape = SubResource("BoxShape3D_djmaw")
+
+[node name="side-back9" type="CollisionShape3D" parent="mc_ship/side-front"]
+transform = Transform3D(-0.0610441, -0.97599, 0.209087, 0.986996, -0.027816, 0.158318, -0.1487, 0.216033, 0.964996, -3.53062, 1.12603, 14.1631)
+shape = SubResource("BoxShape3D_ji12m")

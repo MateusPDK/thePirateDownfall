@@ -1,0 +1,11 @@
+Model Information:
+* title:	Russian chebeque Minerva
+* source:	https://sketchfab.com/3d-models/russian-chebeque-minerva-1b0cc3505e4b47c38a554cfa950df554
+* author:	Museovirasto Museiverket Finnish Heritage Agency (https://sketchfab.com/Museovirasto)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Russian chebeque Minerva" (https://sketchfab.com/3d-models/russian-chebeque-minerva-1b0cc3505e4b47c38a554cfa950df554) by Museovirasto Museiverket Finnish Heritage Agency (https://sketchfab.com/Museovirasto) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
